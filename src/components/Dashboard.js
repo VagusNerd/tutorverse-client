@@ -16,6 +16,7 @@ import ClassList from "./ClassList.js";
 import ClassDetails from "./ClassDetails.js";
 import axios from "axios";
 import { toast } from "react-toastify";
+import API from "./api/index.js";
 
 export default function Dashboard({ user, cls, setCls }) {
   const [keys, setKeys] = useState(user.classIds);
@@ -26,7 +27,7 @@ export default function Dashboard({ user, cls, setCls }) {
   let getDashboard = async () => {
     //
     try {
-      const classes = await axios.get(`http://localhost:3001/classes/`, {
+      const classes = await API.get(`classes/`, {
         params: keys,
       });
       setCls(classes.data);
@@ -45,11 +46,11 @@ export default function Dashboard({ user, cls, setCls }) {
 
   const addClass = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:3001/classes/", {
+    await API.post("classes/", {
       name: form,
       teacher: user._id,
     });
-    await axios.patch(`http://localhost:3001/users/${user._id}`);
+    await API.patch(`users/${user._id}`);
   };
 
   useEffect(() => {
@@ -75,7 +76,7 @@ export default function Dashboard({ user, cls, setCls }) {
 
           {user.type === "teacher" && (
             <Col>
-              <Card className='classesBox'>
+              <Card className="classesBox">
                 <h2 className="heading">Classes</h2>{" "}
                 <Button id="add-class" onClick={toggleAddClass}>
                   Add a Class
@@ -135,7 +136,7 @@ export default function Dashboard({ user, cls, setCls }) {
 
           {user.type === "teacher" && (
             <Col>
-              <Card className='assignmentsBox'>
+              <Card className="assignmentsBox">
                 <h2 className="heading">Assignments</h2>{" "}
                 <AddAssignmentModal
                   showModal={assignmentShow}

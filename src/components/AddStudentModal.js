@@ -20,7 +20,7 @@ export default function AddStudentModal({ cls }) {
   const handleAddStudent = async () => {
     try {
       setIsLoading(true);
-      await axios.patch("http://localhost:3001/classes", {
+      await API.patch("classes", {
         studentName: studentName,
         clsName: cls.name,
       });

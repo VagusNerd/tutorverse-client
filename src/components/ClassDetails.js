@@ -7,7 +7,7 @@ import StudentDetails from "./StudentDetails";
 import AddAssignmentModal from "./AddAssignmentModal.js";
 import AddStudentModal from "./AddStudentModal.js";
 import { calculateAverage } from "../utils/helpers.js";
-import API from './api/index.js'
+import API from "./api/index.js";
 
 export default function ClassDetails({ user }) {
   const [cls, setCls] = useState({});
@@ -18,23 +18,19 @@ export default function ClassDetails({ user }) {
 
   const getClassDetail = async () => {
     try {
-      const fetched = await axios.get(
-        `http://localhost:3001/classes/${params.id}`
-      );
+      const fetched = await API.get(`classes/${params.id}`);
       setCls(fetched.data);
       if (fetched.data.students.length === 0) {
         setStudents([]);
       } else {
         fetched.data.students.map(async (id) => {
-          const fetched = await axios.get(`http://localhost:3001/users/${id}`);
+          const fetched = await API.get(`users/${id}`);
           setStudents((students) => [...students, fetched.data]);
         });
         setStudents(students.filter((s) => s.type === "student"));
       }
       fetched.data.assignments.map(async (as) => {
-        const fetched = await axios.get(
-          `http://localhost:3001/assignments/${as}`
-        );
+        const fetched = await API.get(`assignments/${as}`);
         setAssignments((assignments) => [...assignments, fetched.data]);
       });
     } catch (err) {

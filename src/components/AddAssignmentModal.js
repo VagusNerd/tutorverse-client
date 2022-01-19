@@ -3,6 +3,7 @@ import { Form, Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Oval } from "react-loader-spinner";
+import API from "./api/index.js";
 
 export default function AddAssignmentModal({ showModal, onClose }) {
   const initialNewAssignment = {
@@ -37,12 +38,12 @@ export default function AddAssignmentModal({ showModal, onClose }) {
     const { assignmentName, instructions, link } = newAssignment;
     try {
       setIsLoading(true);
-      await axios.post("http://localhost:3001/assignments/", {
+      await API.post("assignments/", {
         name: assignmentName,
         text: instructions,
         link: link,
       });
-      await axios.patch("http://localhost:3001/classes", {
+      await API.patch("classes", {
         name: newAssignment.className,
         assignment: assignmentName,
       });
