@@ -19,6 +19,9 @@ router
       res.status(404).end();
     }
   })
+  .post('/', async (req, res) => {
+    
+  })
   .patch('/:id', async (req, res) => {
 
     const id = req.params.id;
