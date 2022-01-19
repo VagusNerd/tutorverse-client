@@ -10,7 +10,6 @@ dotenv.config()
 // mongoose.connect('mongodb://localhost:27017/tutorverse');
 mongoose.connect(process.env.MONGO_CONN);
 
-
 mongoose.connection.on('connected', () => {
   console.log('connected to mongoDB')
 })
