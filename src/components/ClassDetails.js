@@ -7,6 +7,7 @@ import StudentDetails from "./StudentDetails";
 import AddAssignmentModal from "./AddAssignmentModal.js";
 import AddStudentModal from "./AddStudentModal.js";
 import { calculateAverage } from "../utils/helpers.js";
+import API from './api/index.js'
 
 export default function ClassDetails({ user }) {
   const [cls, setCls] = useState({});
