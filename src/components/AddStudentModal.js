@@ -3,6 +3,7 @@ import { Form, Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Oval } from "react-loader-spinner";
+import API from "./api/index.js";
 
 export default function AddStudentModal({ cls }) {
   const [show, setShow] = useState(false);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API from "./api/index.js";
 
 export default function ClassList({ user }) {
   const [classes, setClasses] = useState([]);
