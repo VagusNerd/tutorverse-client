@@ -3,7 +3,7 @@ import { Form, Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Oval } from "react-loader-spinner";
-import API from "./api/index.js";
+import API from "../api/index.js";
 
 export default function AddAssignmentModal({ showModal, onClose }) {
   const initialNewAssignment = {
@@ -118,7 +118,7 @@ export default function AddAssignmentModal({ showModal, onClose }) {
             Discard Changes
           </Button>
           <Button variant="primary" onClick={handleAddAssignment}>
-          {isLoading ? (
+            {isLoading ? (
               <Oval height="20" width="20" color="white" arialLabel="loading" />
             ) : (
               "Save Changes"

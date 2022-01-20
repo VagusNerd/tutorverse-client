@@ -16,7 +16,7 @@ import ClassList from "./ClassList.js";
 import ClassDetails from "./ClassDetails.js";
 import axios from "axios";
 import { toast } from "react-toastify";
-import API from "./api/index.js";
+import API from "../api/index.js";
 
 export default function Dashboard({ user, cls, setCls }) {
   const [keys, setKeys] = useState(user.classIds);

@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Oval } from "react-loader-spinner";
-import API from "./api/index.js";
+import API from "../api/index.js";
 
 export default function Login({ setUser, setLoggedIn }) {
   const [username, setUsername] = useState("");
