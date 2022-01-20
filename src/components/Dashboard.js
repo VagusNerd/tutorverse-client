@@ -21,16 +21,21 @@ import API from "../api/index.js";
 export default function Dashboard({ user, cls, setCls }) {
   const [keys, setKeys] = useState(user.classIds);
   const [clsShow, setClsShow] = useState(false);
+  const [classes, setClasses] = useState([])
   const [assignmentShow, setAssignmentShow] = useState(false);
   const [form, setForm] = useState("");
 
   let getDashboard = async () => {
     //
     try {
-      const classes = await API.get(`classes/`, {
-        params: keys,
+      // const classes = await API.get(`classes/`, {
+      //   user.classIds.,
+      // });
+      user.classIds.map(async (as) => {
+        const fetched = await API.get(`classes/${as}`);
+        setClasses((classes) => [...classes, fetched.data]);
       });
-      setCls(classes.data);
+      setCls(classes);
     } catch (err) {
       console.error(err);
     }
@@ -65,7 +70,7 @@ export default function Dashboard({ user, cls, setCls }) {
             <Col>
               <div id="assignmentList">
                 <h2>Assignment List</h2>
-                {cls.map((cl, i) => {
+                {classes.map((cl, i) => {
                   if (cl.assignments.length > 0) {
                     return <AssignmentList cls={cl} key={i} />;
                   }
@@ -108,7 +113,7 @@ export default function Dashboard({ user, cls, setCls }) {
                 </Modal>
                 <Card.Body>
                   <ListGroup className="teacher-classes">
-                    {cls.map((c) => {
+                    {classes.map((c) => {
                       return (
                         <Card className="class" key={c._id}>
                           <Card.Header>
@@ -143,8 +148,8 @@ export default function Dashboard({ user, cls, setCls }) {
                   onClose={() => setAssignmentShow(false)}
                 />
                 <Card.Body className="teacher-assignments">
-                  {cls.map((c, i) => {
-                    return <AssignmentList cls={c} key={i} />;
+                  {classes.map((c, i) => {
+                    return <AssignmentList user={user} cls={c} key={i} />;
                   })}
                 </Card.Body>
               </Card>
