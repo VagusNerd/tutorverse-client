@@ -5,7 +5,6 @@ import Login from './components/Login';
 import AssignmentDetail from './components/AssignmentDetails';
 import ClassList from './components/ClassList';
 import ClassDetails from './components/ClassDetails';
-import StudentList from './components/StudentList';
 import Navbar from './components/Navbar';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -37,7 +36,6 @@ function App() {
         <Route path='/assignment-detail' element={loggedIn ? <AssignmentDetail user={user}/> : renderLogin()} />
         <Route path='/class-list' element={loggedIn ? <ClassList user={user} cls={cls} /> : renderLogin()} />
         <Route path='/class-detail/:id' element={ loggedIn ? <ClassDetails user={user} /> : renderLogin()} />
-        <Route path='/student-list' element={loggedIn ? <StudentList /> : renderLogin()} />
       </Routes>
     </HashRouter>
   );
